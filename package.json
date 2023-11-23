@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@tableland/sdk": "^5.1.0",
+    "@tableland/studio-cli": "^0.0.0-pre.7",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
