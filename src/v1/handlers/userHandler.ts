@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import ApiError from "../api/ApiError";
+import ApiError from "../classes/ApiError";
 import User from "../classes/user";
 
 import dotenv from "dotenv";
