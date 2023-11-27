@@ -3,7 +3,6 @@ import { json, urlencoded } from "body-parser";
 import cors from "cors";
 import { expressjwt as jwt } from "express-jwt";
 import v1 from "./v1";
-import middleware from "./v1/middleware";
 
 // TODO: Store a better secret in a hidden config file
 const secret = process.env.JWT_SECRET || "my-secret";
@@ -15,7 +14,7 @@ const jwtMiddleware = jwt({
   secret: secret,
   algorithms: ["HS256"],
 }).unless({
-  path: ["/v1/user", "/v1/user/login"],
+  path: ["/v1/user"],
   method: ["POST", "GET", "PUT", "DELETE"],
 });
 

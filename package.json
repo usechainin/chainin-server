@@ -12,7 +12,7 @@
   "author": "Dann, Zheng Huy, Azad",
   "license": "ISC",
   "dependencies": {
-    "@tableland/sdk": "^5.1.0",
+    "@tableland/sdk": "^5.1.1",
     "@tableland/studio-cli": "^0.0.0-pre.7",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
