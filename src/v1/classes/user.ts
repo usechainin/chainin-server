@@ -80,7 +80,7 @@ create = async (): Promise<User | undefined> => {
         reject({
           success: false,
           message: e.message,
-          cause: e.cause.message,
+          cause: e.cause ? e.cause.message : "Unknown error",
         });
       }
     });
@@ -105,7 +105,7 @@ read = async (): Promise<User | undefined> => {
         reject({
           success: false,
           message: e.message,
-          cause: e.cause.message,
+          cause: e.cause ? e.cause.message : "Unknown error",
         });
       }
     });
@@ -132,7 +132,7 @@ readByWalletAddress = async (wallet_address: string): Promise<User | undefined> 
         reject({
           success: false,
           message: e.message,
-          cause: e.cause.message,
+          cause: e.cause ? e.cause.message : "Unknown error",
         });
       }
     });
