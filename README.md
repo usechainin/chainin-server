@@ -4,7 +4,7 @@ ChainIn server to build Tableland API with Express and TypeScript.
 
 ### API Docs
 
-**API Documentation**: https://elements.getpostman.com/redirect?entityId=31443216-dd0d4c78-1b59-4c28-9376-7605289e74b8&entityType=collection
+**[ChainIn API Documentation](https://elements.getpostman.com/redirect?entityId=31443216-dd0d4c78-1b59-4c28-9376-7605289e74b8&entityType=collection)** on Postman
 
 ### Run Locally
 
