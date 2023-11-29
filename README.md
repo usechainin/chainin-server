@@ -54,6 +54,7 @@ WHITELISTED_IPS="your_public_ipv4_address"
 TABLELAND_USER_DATABASE="tableland_database_name"
 TABLELAND_EDUCATION_DATABASE="tableland_database_name"
 TABLELAND_SCHOOL_DATABASE="tableland_database_name"
+TABLELAND_COMPANY_DATABASE="tableland_database_name"
 ```
 
 - For `WALLET_PRIVATE_KEY` export your wallet private key from your wallet.
