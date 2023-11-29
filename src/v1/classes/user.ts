@@ -5,53 +5,53 @@ dotenv.config();
 const userTable = process.env.TABLELAND_USER_DATABASE;
 
 class User {
+  success?: boolean;
+  wallet_address?: string;
+  first_name?: string;
+  last_name?: string;
+  email_address?: string;
+
+  constructor(user?: {
     success?: boolean;
     wallet_address?: string;
     first_name?: string;
     last_name?: string;
     email_address?: string;
-
-    constructor(user?: {
-        success?: boolean;
-        wallet_address?: string;
-        first_name?: string;
-        last_name?: string;
-        email_address?: string;
-    }) {
-        this.set(user);
-    }
-        set(user?: {
-        success?: boolean;
-        wallet_address?: string;
-        first_name?: string;
-        last_name?: string;
-        email_address?: string;
-    }) {
+  }) {
+    this.set(user);
+  }
+    set(user?: {
+    success?: boolean;
+    wallet_address?: string;
+    first_name?: string;
+    last_name?: string;
+    email_address?: string;
+  }) {
     if (user !== undefined) {
-        this.success = user.success;
-        this.wallet_address = user.wallet_address;
-        this.first_name = user.first_name;
-        this.last_name = user.last_name;
-        this.email_address = user.email_address;
+      this.success = user.success;
+      this.wallet_address = user.wallet_address;
+      this.first_name = user.first_name;
+      this.last_name = user.last_name;
+      this.email_address = user.email_address;
     }
-}
+  }
 
-/////////////////////////////////////////
-//////////// CRUD OPERATIONS ////////////
-/////////////////////////////////////////
+  /////////////////////////////////////////
+  //////////// CRUD OPERATIONS ////////////
+  /////////////////////////////////////////
 
-// create a new user
-create = async (): Promise<User | undefined> => {
+  // create a new user
+  create = async (): Promise<User | undefined> => {
     const user = this;
     return new Promise<User | undefined>(async (resolve, reject) => {
       try {
         const { results } = await db
-          .prepare(`SELECT * FROM ${userTable} WHERE email_address = ?1`)
-          .bind(user.email_address)
+          .prepare(`SELECT * FROM ${userTable} WHERE wallet_address = ?1`)
+          .bind(user.wallet_address)
           .all();
 
         if (results.length > 0) {
-          reject("Email Address already exists");
+          reject("Wallet Address already exists");
         } else {
           // Insert a row into the table
           const { error, meta: insert } = await db
@@ -84,10 +84,10 @@ create = async (): Promise<User | undefined> => {
         });
       }
     });
-};
+  };
   
-// get all users
-read = async (): Promise<User | undefined> => {
+  // get all users
+  read = async (): Promise<User | undefined> => {
     return new Promise<User | undefined>(async (resolve, reject) => {
       try {
         const results: any = await db
@@ -109,10 +109,10 @@ read = async (): Promise<User | undefined> => {
         });
       }
     });
-};
+  };
 
-// get user by wallet_address
-readByWalletAddress = async (wallet_address: string): Promise<User | undefined> => {
+  // get user by wallet_address
+  readByWalletAddress = async (wallet_address: string): Promise<User | undefined> => {
     console.log(wallet_address, "wats wallet address?");
     return new Promise<User | undefined>(async (resolve, reject) => {
       try {

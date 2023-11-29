@@ -1,11 +1,22 @@
 /////////////////////////////////////////
 /////////////// LOCALHOST ///////////////
 /////////////////////////////////////////
-###
+
+### Get all users
 GET http://localhost:3000/v1/user
 
+### Get user by wallet_address
+GET http://localhost:3000/v1/user/0x1dF6bE628F34a964AcFb695CD9F5417DBc95ff42
+
+### Get all education
+GET http://localhost:3000/v1/education
+
+### Get education by wallet_address
+GET http://localhost:3000/v1/education/0x1dF6bE628F34a964AcFb695CD9F5417DBc95ff42
+
 /////////////////////////////////////////
-/////////////// ONRENDER ////////////////
+//////////////// RENDER /////////////////
 /////////////////////////////////////////
-###
+
+### Get all users
 GET https://chain-server-api.onrender.com/v1/user

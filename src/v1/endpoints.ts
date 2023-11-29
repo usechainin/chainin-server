@@ -1,6 +1,7 @@
 import { Express, Request, Response } from "express";
 import middleware from "./middleware";
 import userHandler from "./handlers/userHandler";
+import educationHandler from "./handlers/educationHandler";
 import handleRootRequest from "./handlers/rootHandler";
 
 type Endpoint = {
@@ -48,6 +49,26 @@ endpoints.readUserByWalletAddress = {
   middleware: [],
   handler: userHandler.readByWalletAddress,
   description: "read user by wallet address",
+}
+
+/////////////////////////////////////////
+/////////////// EDUCATION ///////////////
+/////////////////////////////////////////
+
+endpoints.createEducation = {
+  url: "/v1/education",
+  method: "post",
+  middleware: [middleware.checkWhitelistedIpAddress],
+  handler: educationHandler.create,
+  description: "create education",
+};
+
+endpoints.readEducationByWalletAddress = {
+  url: "/v1/education/:wallet_address",
+  method: "get",
+  middleware: [],
+  handler: educationHandler.readByWalletAddress,
+  description: "read education by wallet address",
 }
 
 export default endpoints;
