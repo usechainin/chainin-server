@@ -3,6 +3,7 @@ import middleware from "./middleware";
 import userHandler from "./handlers/userHandler";
 import educationHandler from "./handlers/educationHandler";
 import handleRootRequest from "./handlers/rootHandler";
+import schoolHandler from "./handlers/schoolHandler";
 
 type Endpoint = {
   url: string;
@@ -69,6 +70,35 @@ endpoints.readEducationByWalletAddress = {
   middleware: [],
   handler: educationHandler.readByWalletAddress,
   description: "read education by wallet address",
+}
+
+/////////////////////////////////////////
+//////////////// SCHOOL /////////////////
+/////////////////////////////////////////
+
+endpoints.createSchool = {
+  url: "/v1/school",
+  method: "post",
+  middleware: [middleware.checkWhitelistedIpAddress],
+  handler: schoolHandler.create,
+  description: "create school",
+};
+
+
+endpoints.readSchool = {
+  url: "/v1/school",
+  method: "get",
+  middleware: [],
+  handler: schoolHandler.read,
+  description: "read all schools",
+};
+
+endpoints.readSchoolBySchoolName = {
+  url: "/v1/school/:school_name",
+  method: "get",
+  middleware: [],
+  handler: schoolHandler.readBySchoolName,
+  description: "read school by school name",
 }
 
 export default endpoints;
