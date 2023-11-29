@@ -15,42 +15,25 @@ class Education {
     end_date?: number;
     description?: string;
 
-    constructor(education?: {
-        success?: boolean;
-        school_id?: number;
-        wallet_address?: string;
-        school_name?: string;
-        degree?: string;
-        field_of_study?: string;
-        start_date?: number;
-        end_date?: number;
-        description?: string;
-    }) {
-        this.set(education);
+    constructor(education?: Education) {
+        if (education) {
+            this.set(education);
+        }
     }
-        set(education?: {
-        success?: boolean;
-        school_id?: number;
-        wallet_address?: string;
-        school_name?: string;
-        degree?: string;
-        field_of_study?: string;
-        start_date?: number;
-        end_date?: number;
-        description?: string;
-    }) {
-    if (education !== undefined) {
-        this.success = education.success;
-        this.school_id = education.school_id;
-        this.wallet_address = education.wallet_address;
-        this.school_name = education.school_name;
-        this.degree = education.degree;
-        this.field_of_study = education.field_of_study;
-        this.start_date = education.start_date;
-        this.end_date = education.end_date;
-        this.description = education.description;
+
+    set(education: Education) {
+        if (education) {
+            this.success = education.success;
+            this.school_id = education.school_id;
+            this.wallet_address = education.wallet_address;
+            this.school_name = education.school_name;
+            this.degree = education.degree;
+            this.field_of_study = education.field_of_study;
+            this.start_date = education.start_date;
+            this.end_date = education.end_date;
+            this.description = education.description;
+        }
     }
-}
 
     /////////////////////////////////////////
     //////////// CRUD OPERATIONS ////////////
@@ -80,16 +63,16 @@ class Education {
             console.log(status);
 
             const { results } = await db
-            .prepare(`SELECT * FROM ${educationTable} ORDER BY school_id DESC LIMIT 1;`)
-            .all();
+                .prepare(`SELECT * FROM ${educationTable} ORDER BY school_id DESC LIMIT 1;`)
+                .all();
 
             resolve(results[0] || "undefined");
         } catch (e: any) {
             console.log(e);
             reject({
-            success: false,
-            message: e.message,
-            cause: e.cause ? e.cause.message : "Unknown error",
+                success: false,
+                message: e.message,
+                cause: e.cause ? e.cause.message : "Unknown error",
             });
         }});
     };
