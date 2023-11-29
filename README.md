@@ -3,9 +3,9 @@
 ChainIn server to build Tableland API with Express and TypeScript.
 
 ### API Docs
-
-<img width="1015" alt="Screenshot 2023-11-29 at 11 55 25 PM" src="https://github.com/usechainin/chainin-server/assets/42776950/29690d3c-496e-4939-a226-e551b8a3a09f">
-
+<p align="center">
+  <img width="333" alt="Screenshot 2023-11-29 at 11 55 25 PM" src="https://github.com/usechainin/chainin-server/assets/42776950/29690d3c-496e-4939-a226-e551b8a3a09f">
+</p>
 **[ChainIn API Documentation](https://elements.getpostman.com/redirect?entityId=31443216-dd0d4c78-1b59-4c28-9376-7605289e74b8&entityType=collection)** on Postman
 
 ### Run Locally
