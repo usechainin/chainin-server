@@ -48,7 +48,7 @@ class Education {
             .prepare(
                 `INSERT INTO ${educationTable} (wallet_address, school_name, degree, field_of_study, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?);`
             )
-            .bind([
+            .bind(
                 education.wallet_address,
                 education.school_name,
                 education.degree,
@@ -56,7 +56,7 @@ class Education {
                 education.start_date,
                 education.end_date,
                 education.description
-            ])
+            )
             .run();
 
             const status = await insert.txn?.wait();
