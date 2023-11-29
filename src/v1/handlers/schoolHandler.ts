@@ -19,10 +19,10 @@ const schoolHandler = {
     },
 
     read: async (req: Request, res: Response) => {
-        const user = new School();
+        const school = new School();
         try {
-            const users = await user.read();
-            res.status(200).send(users);
+            const schools = await school.read();
+            res.status(200).send(schools);
         } catch (err) {
             console.log(err, "Error: read");
             res.status(400).send(new ApiError(400, err));
