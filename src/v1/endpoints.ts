@@ -36,7 +36,6 @@ endpoints.createUser = {
   description: "create user",
 };
 
-
 endpoints.readUser = {
   url: "/v1/user",
   method: "get",
@@ -51,7 +50,23 @@ endpoints.readUserByWalletAddress = {
   middleware: [],
   handler: userHandler.readByWalletAddress,
   description: "read user by wallet address",
-}
+};
+
+endpoints.updateUserByWalletAddress = {
+  url: "/v1/user/:wallet_address",
+  method: "put",
+  middleware: [],
+  handler: userHandler.updateByWalletAddress,
+  description: "update user by wallet address",
+};
+
+endpoints.deleteUserByWalletAddress = {
+  url: "/v1/user/:wallet_address",
+  method: "delete",
+  middleware: [],
+  handler: userHandler.deleteByWalletAddress,
+  description: "delete user by wallet address",
+};
 
 /////////////////////////////////////////
 /////////////// EDUCATION ///////////////
@@ -71,7 +86,7 @@ endpoints.readEducationByWalletAddress = {
   middleware: [],
   handler: educationHandler.readByWalletAddress,
   description: "read education by wallet address",
-}
+};
 
 /////////////////////////////////////////
 //////////////// SCHOOL /////////////////
@@ -84,7 +99,6 @@ endpoints.createSchool = {
   handler: schoolHandler.create,
   description: "create school",
 };
-
 
 endpoints.readSchool = {
   url: "/v1/school",
@@ -100,7 +114,7 @@ endpoints.readSchoolBySchoolName = {
   middleware: [],
   handler: schoolHandler.readBySchoolName,
   description: "read school by school name",
-}
+};
 
 /////////////////////////////////////////
 /////////////// COMPANY /////////////////
@@ -113,7 +127,6 @@ endpoints.createCompany = {
   handler: companyHandler.create,
   description: "create company",
 };
-
 
 endpoints.readCompany = {
   url: "/v1/company",
@@ -129,5 +142,5 @@ endpoints.readCompanyByCompanyName = {
   middleware: [],
   handler: companyHandler.readByCompanyName,
   description: "read company by company name",
-}
+};
 export default endpoints;
