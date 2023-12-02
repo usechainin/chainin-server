@@ -4,7 +4,6 @@ import cors from "cors";
 import { expressjwt as jwt } from "express-jwt";
 import v1 from "./v1";
 
-// TODO: Store a better secret in a hidden config file
 const secret = process.env.JWT_SECRET || "my-secret";
 
 const app = express();

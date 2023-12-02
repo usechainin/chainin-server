@@ -27,7 +27,6 @@ middleware.authenticateJWT = (
     return res.status(401).json({ error: "No token provided" });
   }
 
-  // TODO: add secret in env variable/config file
   jwt.verify(token, "my-secret", (err, user) => {
     if (err) {
       return res.status(403).json({ error: "Invalid token" });
@@ -54,23 +53,22 @@ middleware.authenticateJWTForWebsocket = (socket, next: NextFunction) => {
 };
 
 middleware.checkWhitelistedIpAddress = (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
-    if (whitelistedIPs) {
-      const whitelistedIpList = whitelistedIPs.split(",");
-      const clientIP: string | undefined = req.ip;
-  
-      if (clientIP && whitelistedIpList.includes(clientIP)) {
-        return next();
-      } else {
-        return res.status(403).send("Forbidden");
-      }
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (whitelistedIPs) {
+    const whitelistedIpList = whitelistedIPs.split(",");
+    const clientIP: string | undefined = req.ip;
+
+    if (clientIP && whitelistedIpList.includes(clientIP)) {
+      return next();
     } else {
-      console.log("WHITELISTED_IPS undefined in ENV.");
+      return res.status(403).send("Forbidden");
     }
-  };
-  
+  } else {
+    console.log("WHITELISTED_IPS undefined in ENV.");
+  }
+};
 
 export default middleware;
