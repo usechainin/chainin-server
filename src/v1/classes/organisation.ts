@@ -8,6 +8,7 @@ class Organisation {
   success?: boolean;
   organisation_id?: number;
   organisation_name?: string;
+  organisation_symbol?: string;
   description?: string;
   picture_url?: string;
   website_url?: string;
@@ -26,6 +27,7 @@ class Organisation {
       this.success = organisation.success;
       this.organisation_id = organisation.organisation_id;
       this.organisation_name = organisation.organisation_name;
+      this.organisation_symbol = organisation.organisation_symbol;
       this.description = organisation.description;
       this.picture_url = organisation.picture_url;
       this.website_url = organisation.website_url;
@@ -46,10 +48,11 @@ class Organisation {
       try {
         const { error, meta: insert } = await db
           .prepare(
-            `INSERT INTO ${organisationTable} (organisation_name, description, picture_url, website_url, creator_wallet_address, nft_contract_address, organisation_type) VALUES (?, ?, ?, ?, ?, ?, ?);`
+            `INSERT INTO ${organisationTable} (organisation_name, organisation_symbol, description, picture_url, website_url, creator_wallet_address, nft_contract_address, organisation_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`
           )
           .bind(
             organisation.organisation_name,
+            organisation.organisation_symbol,
             organisation.description,
             organisation.picture_url,
             organisation.website_url,
@@ -131,6 +134,32 @@ class Organisation {
     });
   };
 
+  // get organisation by organisation_symbol
+  readByOrganisationSymbol = async (
+    organisation_symbol: string
+  ): Promise<Organisation | Object> => {
+    console.log(organisation_symbol, "wats organisation symbol?");
+    return new Promise<Organisation | Object>(async (resolve, reject) => {
+      try {
+        const results: any = await db
+          .prepare(
+            `SELECT * FROM ${organisationTable} WHERE organisation_symbol = ?1`
+          )
+          .bind(organisation_symbol)
+          .all();
+
+        resolve(results);
+      } catch (e: any) {
+        console.log(e);
+        reject({
+          success: false,
+          message: e.message,
+          cause: e.cause ? e.cause.message : "Unknown error",
+        });
+      }
+    });
+  };
+
   // update organisation by organisation_id
   updateByOrganisationId = async (
     organisation_id: number,
@@ -140,10 +169,11 @@ class Organisation {
       try {
         const { error, meta: update } = await db
           .prepare(
-            `UPDATE ${organisationTable} SET organisation_name = ?, description = ?, picture_url = ?, website_url = ?, creator_wallet_address = ?, nft_contract_address = ?, organisation_type = ? WHERE organisation_id = ?;`
+            `UPDATE ${organisationTable} SET organisation_name = ?, organisation_symbol = ?, description = ?, picture_url = ?, website_url = ?, creator_wallet_address = ?, nft_contract_address = ?, organisation_type = ? WHERE organisation_id = ?;`
           )
           .bind(
             organisation.organisation_name,
+            organisation.organisation_symbol,
             organisation.description,
             organisation.picture_url,
             organisation.website_url,
