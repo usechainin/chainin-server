@@ -97,7 +97,7 @@ endpoints.readOrganisationByOrganisationName = {
   description: "read organisation by organisation name",
 };
 
-endpoints.readOrganisationByOrganisationName = {
+endpoints.readOrganisationByOrganisationSymbol = {
   url: "/v1/organisation/:organisation_symbol",
   method: "get",
   middleware: [],
