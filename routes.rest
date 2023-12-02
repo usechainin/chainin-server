@@ -1,3 +1,5 @@
+/// For Testing Purposes ///
+
 /////////////////////////////////////////
 /////////////// LOCALHOST ///////////////
 /////////////////////////////////////////
@@ -16,9 +18,18 @@ GET http://localhost:3000/v1/user/0x1dF6bE628F34a964AcFb695CD9F5417DBc95ff42
 //////// ORGANISATION /////////
 ///////////////////////////////
 
+### Get all organisations
+GET http://localhost:3000/v1/organisation
+
+### Get organisation by organisation_name
+GET http://localhost:3000/v1/organisation/name/Ngee%20Ann%20Polytechnic
+
+### Get organisation by organisation_id
+GET http://localhost:3000/v1/organisation/name/Ngee%20Ann%20Polytechnic
+
 /////////////////////////////////////////
 //////////////// RENDER /////////////////
 /////////////////////////////////////////
 
-### Get all users
-GET https://chain-server-api.onrender.com/v1/user
+### Documented on Postman Documentation
+### https://elements.getpostman.com/redirect?entityId=31443216-dd0d4c78-1b59-4c28-9376-7605289e74b8&entityType=collection
