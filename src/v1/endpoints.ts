@@ -90,7 +90,7 @@ endpoints.readOrganisation = {
 };
 
 endpoints.readOrganisationByOrganisationName = {
-  url: "/v1/organisation/:organisation_name",
+  url: "/v1/organisation/name/:organisation_name",
   method: "get",
   middleware: [],
   handler: organisationHandler.readByOrganisationName,
@@ -98,7 +98,7 @@ endpoints.readOrganisationByOrganisationName = {
 };
 
 endpoints.readOrganisationByOrganisationSymbol = {
-  url: "/v1/organisation/:organisation_symbol",
+  url: "/v1/organisation/symbol/:organisation_symbol",
   method: "get",
   middleware: [],
   handler: organisationHandler.readByOrganisationSymbol,
