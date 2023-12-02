@@ -5,6 +5,7 @@ import educationHandler from "./handlers/educationHandler";
 import handleRootRequest from "./handlers/rootHandler";
 import schoolHandler from "./handlers/schoolHandler";
 import companyHandler from "./handlers/companyHandler";
+import organisationHandler from "./handlers/organisationHandler";
 
 type Endpoint = {
   url: string;
@@ -66,6 +67,50 @@ endpoints.deleteUserByWalletAddress = {
   middleware: [],
   handler: userHandler.deleteByWalletAddress,
   description: "delete user by wallet address",
+};
+
+/////////////////////////////////////////
+////////////// ORGANISATION /////////////
+/////////////////////////////////////////
+
+endpoints.createOrganisation = {
+  url: "/v1/organisation",
+  method: "post",
+  middleware: [middleware.checkWhitelistedIpAddress],
+  handler: organisationHandler.create,
+  description: "create organisation",
+};
+
+endpoints.readOrganisation = {
+  url: "/v1/organisation",
+  method: "get",
+  middleware: [],
+  handler: organisationHandler.read,
+  description: "read all organisations",
+};
+
+endpoints.readOrganisationByOrganisationName = {
+  url: "/v1/organisation/:organisation_name",
+  method: "get",
+  middleware: [],
+  handler: organisationHandler.readByOrganisationName,
+  description: "read organisation by organisation name",
+};
+
+endpoints.updateOrganisationByOrganisationId = {
+  url: "/v1/organisation/:organisation_id",
+  method: "put",
+  middleware: [],
+  handler: organisationHandler.updateByOrganisationId,
+  description: "update organisation by organisation id",
+};
+
+endpoints.deleteOrganisationByOrganisationId = {
+  url: "/v1/organisation/:organisation_id",
+  method: "delete",
+  middleware: [],
+  handler: organisationHandler.deleteByOrganisationId,
+  description: "delete organisation by organisation id",
 };
 
 /////////////////////////////////////////

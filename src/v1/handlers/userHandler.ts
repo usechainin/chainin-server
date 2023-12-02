@@ -54,7 +54,7 @@ const userHandler = {
         const userObj = await user.updateByWalletAddress(walletAddress, user);
         res.status(200).send(userObj);
       } catch (err) {
-        console.log(err, "Updating wallet address error");
+        console.log(err, "Updating user details error");
         res.status(400).send(new ApiError(400, err));
       }
     } else {
