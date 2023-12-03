@@ -19,9 +19,9 @@ const jwtMiddleware = jwt({
 
 app
   .use(
-    cors(),
     json({ limit: "5mb" }),
     jwtMiddleware,
+    cors(),
     urlencoded({ extended: true }),
     v1
   )
