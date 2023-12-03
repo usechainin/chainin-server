@@ -17,9 +17,13 @@ const jwtMiddleware = jwt({
   method: ["POST", "GET", "PUT", "DELETE"],
 });
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+};
+
 app
   .use(
-    cors(),
+    cors(corsOptions),
     json({ limit: "5mb" }),
     jwtMiddleware,
     urlencoded({ extended: true }),
