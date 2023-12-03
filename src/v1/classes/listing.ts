@@ -84,7 +84,7 @@ class Listing {
             `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
             FROM ${listingTable} l
             LEFT JOIN ${organisationTable} o 
-            ON l.organisation_id = o.organisation_id}`
+            ON l.organisation_id = o.organisation_id`
           )
           .bind()
           .all();
@@ -115,7 +115,7 @@ class Listing {
             `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
             FROM ${listingTable} l
             LEFT JOIN ${organisationTable} o 
-            ON l.organisation_id = o.organisation_id}
+            ON l.organisation_id = o.organisation_id
             WHERE listing_id = ?1`
           )
           .bind(listing_id)
@@ -145,7 +145,7 @@ class Listing {
             `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
             FROM ${listingTable} l
             LEFT JOIN ${organisationTable} o 
-            ON l.organisation_id = o.organisation_id}
+            ON l.organisation_id = o.organisation_id
             WHERE listing_title = ?1`
           )
           .bind(listing_title)
@@ -175,7 +175,7 @@ class Listing {
             `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
             FROM ${listingTable} l
             LEFT JOIN ${organisationTable} o 
-            ON l.organisation_id = o.organisation_id}
+            ON l.organisation_id = o.organisation_id
             WHERE listing_title = ?1`
           )
           .bind(organisation_name)

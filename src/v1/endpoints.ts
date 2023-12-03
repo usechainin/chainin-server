@@ -156,7 +156,7 @@ endpoints.readListingByListingTitle = {
 };
 
 endpoints.readListingByOrganisationName = {
-  url: "/v1/listing/name/:organisation_name",
+  url: "/v1/listing/organisation/:organisation_name",
   method: "get",
   middleware: [],
   handler: listingHandler.readByOrganisationName,
