@@ -40,7 +40,7 @@ GET http://localhost:3000/v1/listing/id/1
 ### Get listing by listing_title
 GET http://localhost:3000/v1/listing/title/Smart%20Contract%20Developer
 
-### Get listing by organisation_name
+### Get listing by organisation_id
 GET http://localhost:3000/v1/listing/organisation/Ngee%20Ann%20Polytechnic
 
 /////////////////////////////////////////
