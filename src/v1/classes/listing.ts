@@ -3,12 +3,12 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const listingTable = process.env.TABLELAND_LISTING_DATABASE;
+const organisationTable = process.env.TABLELAND_ORGANISATION_DATABASE;
 
 class Listing {
   success?: boolean;
   listing_id?: number;
   organisation_id?: number;
-  organisation_name?: string;
   listing_title?: string;
   employment_status?: string;
   location?: string;
@@ -25,7 +25,6 @@ class Listing {
       this.success = listing.success;
       this.listing_id = listing.listing_id;
       this.organisation_id = listing.organisation_id;
-      this.organisation_name = listing.organisation_name;
       this.listing_title = listing.listing_title;
       this.employment_status = listing.employment_status;
       this.location = listing.location;
@@ -44,11 +43,10 @@ class Listing {
       try {
         const { error, meta: insert } = await db
           .prepare(
-            `INSERT INTO ${listingTable} (organisation_id, organisation_name, listing_title, employment_status, location, description) VALUES (?, ?, ?, ?, ?, ?);`
+            `INSERT INTO ${listingTable} (organisation_id, listing_title, employment_status, location, description) VALUES (?, ?, ?, ?, ?);`
           )
           .bind(
             listing.organisation_id,
-            listing.organisation_name,
             listing.listing_title,
             listing.employment_status,
             listing.location,
@@ -77,12 +75,17 @@ class Listing {
     });
   };
 
-  // get all organisations
+  // get all listings
   read = async (): Promise<Listing | undefined> => {
     return new Promise<Listing | undefined>(async (resolve, reject) => {
       try {
         const results: any = await db
-          .prepare(`SELECT * FROM ${listingTable}`)
+          .prepare(
+            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
+            FROM ${listingTable} l
+            LEFT JOIN ${organisationTable} o 
+            ON l.organisation_id = o.organisation_id}`
+          )
           .bind()
           .all();
 
@@ -108,7 +111,13 @@ class Listing {
     return new Promise<Listing | Object>(async (resolve, reject) => {
       try {
         const results: any = await db
-          .prepare(`SELECT * FROM ${listingTable} WHERE listing_id = ?1`)
+          .prepare(
+            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
+            FROM ${listingTable} l
+            LEFT JOIN ${organisationTable} o 
+            ON l.organisation_id = o.organisation_id}
+            WHERE listing_id = ?1`
+          )
           .bind(listing_id)
           .all();
 
@@ -132,7 +141,13 @@ class Listing {
     return new Promise<Listing | Object>(async (resolve, reject) => {
       try {
         const results: any = await db
-          .prepare(`SELECT * FROM ${listingTable} WHERE listing_title = ?1`)
+          .prepare(
+            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
+            FROM ${listingTable} l
+            LEFT JOIN ${organisationTable} o 
+            ON l.organisation_id = o.organisation_id}
+            WHERE listing_title = ?1`
+          )
           .bind(listing_title)
           .all();
 
@@ -156,7 +171,13 @@ class Listing {
     return new Promise<Listing | Object>(async (resolve, reject) => {
       try {
         const results: any = await db
-          .prepare(`SELECT * FROM ${listingTable} WHERE organisation_name = ?1`)
+          .prepare(
+            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
+            FROM ${listingTable} l
+            LEFT JOIN ${organisationTable} o 
+            ON l.organisation_id = o.organisation_id}
+            WHERE listing_title = ?1`
+          )
           .bind(organisation_name)
           .all();
 
@@ -181,11 +202,10 @@ class Listing {
       try {
         const { error, meta: update } = await db
           .prepare(
-            `UPDATE ${listingTable} SET organisation_id = ?, organisation_name = ?, listing_title = ?, employment_status = ?, location = ?, description = ? WHERE listing_id = ?;`
+            `UPDATE ${listingTable} SET organisation_id = ?, listing_title = ?, employment_status = ?, location = ?, description = ? WHERE listing_id = ?;`
           )
           .bind(
             listing.organisation_id,
-            listing.organisation_name,
             listing.listing_title,
             listing.employment_status,
             listing.location,
@@ -198,9 +218,7 @@ class Listing {
         console.log(status);
 
         const { results } = await db
-          .prepare(
-            `SELECT * FROM ${listingTable} WHERE listing_id = ?;`
-          )
+          .prepare(`SELECT * FROM ${listingTable} WHERE listing_id = ?;`)
           .bind(listing_id)
           .all();
 
@@ -221,9 +239,7 @@ class Listing {
     return new Promise<Object>(async (resolve, reject) => {
       try {
         const { error, meta: update } = await db
-          .prepare(
-            `DELETE FROM ${listingTable} WHERE listing_id = ?;`
-          )
+          .prepare(`DELETE FROM ${listingTable} WHERE listing_id = ?;`)
           .bind(listing_id)
           .run();
 
