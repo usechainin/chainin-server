@@ -29,6 +29,24 @@ const organisationHandler = {
     }
   },
 
+  readByOrganisationId: async (req: Request, res: Response) => {
+    const organisationId = String(req.params.organisation_id);
+    if (organisationId) {
+      const organisation = new Organisation();
+      try {
+        const organisationObj = await organisation.readByOrganisationId(
+          organisationId
+        );
+        res.status(200).send(organisationObj);
+      } catch (err) {
+        console.log(err, "Reading organisation id error");
+        res.status(400).send(new ApiError(400, err));
+      }
+    } else {
+      res.status(404).send(new ApiError(404, "No organisation id provided"));
+    }
+  },
+
   readByOrganisationName: async (req: Request, res: Response) => {
     const organisationName = String(req.params.organisation_name);
     if (organisationName) {
@@ -61,7 +79,9 @@ const organisationHandler = {
         res.status(400).send(new ApiError(400, err));
       }
     } else {
-      res.status(404).send(new ApiError(404, "No organisation symbol provided"));
+      res
+        .status(404)
+        .send(new ApiError(404, "No organisation symbol provided"));
     }
   },
 

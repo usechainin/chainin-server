@@ -87,6 +87,14 @@ endpoints.readOrganisation = {
   description: "read all organisations",
 };
 
+endpoints.readOrganisationByOrganisationId = {
+  url: "/v1/organisation/id/:organisation_id",
+  method: "get",
+  middleware: [],
+  handler: organisationHandler.readByOrganisationId,
+  description: "read organisation by organisation id",
+};
+
 endpoints.readOrganisationByOrganisationName = {
   url: "/v1/organisation/name/:organisation_name",
   method: "get",

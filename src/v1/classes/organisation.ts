@@ -108,6 +108,32 @@ class Organisation {
     });
   };
 
+  // get organisation by organisation_id
+  readByOrganisationId = async (
+    organisation_id: string
+  ): Promise<Organisation | Object> => {
+    console.log(organisation_id, "wats organisation id?");
+    return new Promise<Organisation | Object>(async (resolve, reject) => {
+      try {
+        const results: any = await db
+          .prepare(
+            `SELECT * FROM ${organisationTable} WHERE organisation_id = ?1`
+          )
+          .bind(organisation_id)
+          .all();
+
+        resolve(results);
+      } catch (e: any) {
+        console.log(e);
+        reject({
+          success: false,
+          message: e.message,
+          cause: e.cause ? e.cause.message : "Unknown error",
+        });
+      }
+    });
+  };
+
   // get organisation by organisation_name
   readByOrganisationName = async (
     organisation_name: string
