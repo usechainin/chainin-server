@@ -14,7 +14,7 @@ class Organisation {
   website_url?: string;
   creator_wallet_address?: string;
   nft_contract_address?: string;
-  organisation_type?: string;
+  organisation_type?: number;
 
   constructor(organisation?: Organisation) {
     if (organisation) {
