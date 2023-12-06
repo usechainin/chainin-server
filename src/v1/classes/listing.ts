@@ -176,7 +176,7 @@ class Listing {
             FROM ${listingTable} l
             LEFT JOIN ${organisationTable} o 
             ON l.organisation_id = o.organisation_id
-            WHERE organisation_id = ?1`
+            WHERE l.organisation_id = ?1`
           )
           .bind(organisation_id)
           .all();
