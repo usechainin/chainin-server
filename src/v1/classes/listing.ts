@@ -164,10 +164,10 @@ class Listing {
   };
 
   // get listing by organisation_name
-  readByOrganisationName = async (
-    organisation_name: string
+  readByOrganisationId = async (
+    organisation_id: number
   ): Promise<Listing | Object> => {
-    console.log(organisation_name, "wats organisation name?");
+    console.log(organisation_id, "wats organisation id?");
     return new Promise<Listing | Object>(async (resolve, reject) => {
       try {
         const results: any = await db
@@ -176,9 +176,9 @@ class Listing {
             FROM ${listingTable} l
             LEFT JOIN ${organisationTable} o 
             ON l.organisation_id = o.organisation_id
-            WHERE organisation_name = ?1`
+            WHERE organisation_id = ?1`
           )
-          .bind(organisation_name)
+          .bind(organisation_id)
           .all();
 
         resolve(results);

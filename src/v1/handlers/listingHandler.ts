@@ -61,21 +61,19 @@ const listingHandler = {
     }
   },
 
-  readByOrganisationName: async (req: Request, res: Response) => {
-    const organisationName = String(req.params.organisation_name);
-    if (organisationName) {
+  readByOrganisationId: async (req: Request, res: Response) => {
+    const organisationId = Number(req.params.organisation_id);
+    if (organisationId) {
       const listing = new Listing();
       try {
-        const listingObj = await listing.readByOrganisationName(
-          organisationName
-        );
+        const listingObj = await listing.readByOrganisationId(organisationId);
         res.status(200).send(listingObj);
       } catch (err) {
-        console.log(err, "Reading organisation name error");
+        console.log(err, "Reading organisation id error");
         res.status(400).send(new ApiError(400, err));
       }
     } else {
-      res.status(404).send(new ApiError(404, "No organisation name provided"));
+      res.status(404).send(new ApiError(404, "No organisation id provided"));
     }
   },
 

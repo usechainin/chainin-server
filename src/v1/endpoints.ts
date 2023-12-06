@@ -163,12 +163,12 @@ endpoints.readListingByListingTitle = {
   description: "read listing by listing title",
 };
 
-endpoints.readListingByOrganisationName = {
-  url: "/v1/listing/organisation/:organisation_name",
+endpoints.readListingByOrganisationId = {
+  url: "/v1/listing/organisation/:organisation_id",
   method: "get",
   middleware: [],
-  handler: listingHandler.readByOrganisationName,
-  description: "read listing by organisation name",
+  handler: listingHandler.readByOrganisationId,
+  description: "read listing by organisation id",
 };
 
 endpoints.updateListingByListingId = {
