@@ -217,7 +217,7 @@ endpoints.readApplicationBySubgraphId = {
 };
 
 endpoints.readApplicationByWalletAddress = {
-  url: "/v1/application/user/:wallet_address",
+  url: "/v1/application/user/:applicant_wallet_address",
   method: "get",
   middleware: [],
   handler: applicationHandler.readByWalletAddress,
