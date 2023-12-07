@@ -4,6 +4,7 @@ import userHandler from "./handlers/userHandler";
 import handleRootRequest from "./handlers/rootHandler";
 import organisationHandler from "./handlers/organisationHandler";
 import listingHandler from "./handlers/listingHandler";
+import applicationHandler from "./handlers/applicationHandler";
 
 type Endpoint = {
   url: string;
@@ -185,6 +186,66 @@ endpoints.deleteListingByListingId = {
   middleware: [],
   handler: listingHandler.deleteByListingId,
   description: "delete listing by listing id",
+};
+
+/////////////////////////////////////////
+////////////// APPLICATION //////////////
+/////////////////////////////////////////
+
+endpoints.createApplication = {
+  url: "/v1/application",
+  method: "post",
+  middleware: [middleware.checkWhitelistedIpAddress],
+  handler: applicationHandler.create,
+  description: "create application",
+};
+
+endpoints.readApplication = {
+  url: "/v1/application",
+  method: "get",
+  middleware: [],
+  handler: applicationHandler.read,
+  description: "read all applications",
+};
+
+endpoints.readApplicationBySubgraphId = {
+  url: "/v1/application/subgraph/:subgraph_id",
+  method: "get",
+  middleware: [],
+  handler: applicationHandler.readBySubgraphId,
+  description: "read application by subgraph id",
+};
+
+endpoints.readApplicationByWalletAddress = {
+  url: "/v1/application/user/:wallet_address",
+  method: "get",
+  middleware: [],
+  handler: applicationHandler.readByWalletAddress,
+  description: "read application by applicant wallet address",
+};
+
+endpoints.readApplicationByListingId = {
+  url: "/v1/application/listing/:listing_id",
+  method: "get",
+  middleware: [],
+  handler: applicationHandler.readByListingId,
+  description: "read application by listing id",
+};
+
+endpoints.updateUserBySubgraphId = {
+  url: "/v1/application/:subgraph_id",
+  method: "put",
+  middleware: [],
+  handler: applicationHandler.updateBySubgraphId,
+  description: "update application by subgraph id",
+};
+
+endpoints.deleteUserBySubgraphId = {
+  url: "/v1/application/:subgraph_id",
+  method: "delete",
+  middleware: [],
+  handler: applicationHandler.deleteBySubgraphId,
+  description: "delete application by subgraph id",
 };
 
 export default endpoints;
