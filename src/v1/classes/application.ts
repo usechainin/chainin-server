@@ -56,7 +56,7 @@ class Application {
           // Insert a row into the table
           const { error, meta: insert } = await db
             .prepare(
-              `INSERT INTO ${application} (subgraph_id, applicant_wallet_address, listing_id, profile_url) VALUES (?, ?, ?, ?);`
+              `INSERT INTO ${applicationTable} (subgraph_id, applicant_wallet_address, listing_id, profile_url) VALUES (?, ?, ?, ?);`
             )
             .bind(
               application.subgraph_id,
