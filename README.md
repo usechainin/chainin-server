@@ -3,12 +3,13 @@
 **ChainIn** backend server powered by [Tableland](https://tableland.xyz/). Written in ExpressJS, NodeJS and TypeScript. Hosted on [Render](https://render.com/).
 
 ## API Documentation
+
 <div align="center">
   <a href="https://documenter.getpostman.com/view/31443216/2s9YkgCjsv">
     <img 
       src="https://github.com/usechainin/chainin-server/assets/42776950/40d2c2a2-931f-449e-bfde-f5265662536a" 
       alt="Chainin Server" 
-      style="width:40%; height:40%;"
+      style="width:100%; height:100%;"
     />
   </a>
 </div>
