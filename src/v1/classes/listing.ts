@@ -81,7 +81,7 @@ class Listing {
       try {
         const results: any = await db
           .prepare(
-            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
+            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo, o.creator_wallet_address AS organisation_creator
             FROM ${listingTable} l
             LEFT JOIN ${organisationTable} o 
             ON l.organisation_id = o.organisation_id`
@@ -112,7 +112,7 @@ class Listing {
       try {
         const results: any = await db
           .prepare(
-            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
+            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo, o.creator_wallet_address AS organisation_creator
             FROM ${listingTable} l
             LEFT JOIN ${organisationTable} o 
             ON l.organisation_id = o.organisation_id
@@ -142,7 +142,7 @@ class Listing {
       try {
         const results: any = await db
           .prepare(
-            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
+            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo, o.creator_wallet_address AS organisation_creator
             FROM ${listingTable} l
             LEFT JOIN ${organisationTable} o 
             ON l.organisation_id = o.organisation_id
@@ -172,7 +172,7 @@ class Listing {
       try {
         const results: any = await db
           .prepare(
-            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo 
+            `SELECT l.*, o.organisation_name AS organisation_name, o.picture_url AS organisation_logo, o.creator_wallet_address AS organisation_creator
             FROM ${listingTable} l
             LEFT JOIN ${organisationTable} o 
             ON l.organisation_id = o.organisation_id
