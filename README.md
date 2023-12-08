@@ -2,9 +2,16 @@
 
 ChainIn Server powered by Tableland. Written in Express and TypeScript.
 
-### API Docs
-
-**[ChainIn API Documentation](https://elements.getpostman.com/redirect?entityId=31443216-dd0d4c78-1b59-4c28-93767605289e74b8&entityType=collection)** on Postman
+### API Documentation
+<div align="center">
+  <a href="https://elements.getpostman.com/redirect?entityId=31443216-dd0d4c78-1b59-4c28-93767605289e74b8&entityType=collection">
+    <img 
+      src="https://github.com/usechainin/chainin-server/assets/42776950/40d2c2a2-931f-449e-bfde-f5265662536a" 
+      alt="Chainin Server" 
+      style="width:40%; height:40%;"
+    />
+  </a>
+</div>
 
 ### Run Locally
 
