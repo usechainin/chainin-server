@@ -1,6 +1,6 @@
 ## ChainIn - Backend
 
-**ChainIn** Server powered by [Tableland](https://tableland.xyz/). Written in ExpressJS, NodeJS and TypeScript. Hosted on [Render](https://render.com/).
+**ChainIn** backend server powered by [Tableland](https://tableland.xyz/). Written in ExpressJS, NodeJS and TypeScript. Hosted on [Render](https://render.com/).
 
 ### API Documentation
 <div align="center">
