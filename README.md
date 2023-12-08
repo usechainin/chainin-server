@@ -1,8 +1,8 @@
-## ChainIn - Backend
+# ChainIn - Backend
 
 **ChainIn** backend server powered by [Tableland](https://tableland.xyz/). Written in ExpressJS, NodeJS and TypeScript. Hosted on [Render](https://render.com/).
 
-### API Documentation
+## API Documentation
 <div align="center">
   <a href="https://documenter.getpostman.com/view/31443216/2s9YkgCjsv">
     <img 
@@ -13,7 +13,7 @@
   </a>
 </div>
 
-### Run Locally
+## Run on local
 
 Install dependencies:
 
@@ -27,7 +27,7 @@ Start the server:
   npm run dev
 ```
 
-### Run on main
+## Run on main
 
 Install dependencies:
 
@@ -41,7 +41,7 @@ Start the server:
   npm run start
 ```
 
-### Environment Variables
+## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file:
 
