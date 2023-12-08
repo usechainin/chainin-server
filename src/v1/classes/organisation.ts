@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const organisationTable = process.env.TABLELAND_ORGANISATION_DATABASE;
+const listingTable = process.env.TABLELAND_LISTING_DATABASE;
 
 class Organisation {
   success?: boolean;
@@ -236,15 +237,24 @@ class Organisation {
   deleteByOrganisationId = async (organisation_id: number): Promise<Object> => {
     return new Promise<Object>(async (resolve, reject) => {
       try {
-        const { error, meta: update } = await db
+        const { error: orgError, meta: orgUpdate } = await db
           .prepare(
             `DELETE FROM ${organisationTable} WHERE organisation_id = ?;`
           )
           .bind(organisation_id)
           .run();
 
-        const status = await update.txn?.wait();
-        console.log(status);
+        const orgStatus = await orgUpdate.txn?.wait();
+        console.log(orgStatus);
+
+        // Delete listings from organisation_id in listingTable
+        const { error: listingError, meta: listingUpdate } = await db
+          .prepare(`DELETE FROM ${listingTable} WHERE organisation_id = ?;`)
+          .bind(organisation_id)
+          .run();
+
+        const listingStatus = await listingUpdate.txn?.wait();
+        console.log(listingStatus);
 
         resolve({ success: true });
       } catch (e: any) {
