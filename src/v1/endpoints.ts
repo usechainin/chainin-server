@@ -232,6 +232,14 @@ endpoints.readApplicationByListingId = {
   description: "read application by listing id",
 };
 
+endpoints.readApplicationByOrganisationId = {
+  url: "/v1/application/organisation/:organisation_id",
+  method: "get",
+  middleware: [],
+  handler: applicationHandler.readByOrganisationId,
+  description: "read application by organisation id",
+};
+
 endpoints.updateUserBySubgraphId = {
   url: "/v1/application/:subgraph_id",
   method: "put",

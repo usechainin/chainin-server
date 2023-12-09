@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const applicationTable = process.env.TABLELAND_APPLICATION_DATABASE;
+const listingTable = process.env.TABLELAND_LISTING_DATABASE;
 
 class Application {
   success?: boolean;
@@ -96,7 +97,12 @@ class Application {
     return new Promise<Application | undefined>(async (resolve, reject) => {
       try {
         const results: any = await db
-          .prepare(`SELECT * FROM ${applicationTable}`)
+          .prepare(
+            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title, 
+            FROM ${applicationTable} a
+            LEFT JOIN ${listingTable} l
+            ON a.listing_id = l.listing_id`
+          )
           .bind()
           .all();
 
@@ -124,7 +130,13 @@ class Application {
     return new Promise<Application | undefined>(async (resolve, reject) => {
       try {
         const results: any = await db
-          .prepare(`SELECT * FROM ${applicationTable} WHERE subgraph_id = ?1`)
+          .prepare(
+            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title, 
+            FROM ${applicationTable} a
+            LEFT JOIN ${listingTable} l
+            ON a.listing_id = l.listing_id
+            WHERE a.subgraph_id = ?1`
+          )
           .bind(subgraph_id)
           .all();
 
@@ -154,7 +166,11 @@ class Application {
       try {
         const results: any = await db
           .prepare(
-            `SELECT * FROM ${applicationTable} WHERE applicant_wallet_address = ?1`
+            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title, 
+          FROM ${applicationTable} a
+          LEFT JOIN ${listingTable} l
+          ON a.listing_id = l.listing_id
+          WHERE a.applicant_wallet_address = ?1`
           )
           .bind(applicant_wallet_address)
           .all();
@@ -184,8 +200,49 @@ class Application {
     return new Promise<Application | undefined>(async (resolve, reject) => {
       try {
         const results: any = await db
-          .prepare(`SELECT * FROM ${applicationTable} WHERE listing_id = ?1`)
+          .prepare(
+            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title, 
+              FROM ${applicationTable} a
+              LEFT JOIN ${listingTable} l
+              ON a.listing_id = l.listing_id
+              WHERE a.listing_id = ?1`
+          )
           .bind(listing_id)
+          .all();
+
+        if (results.results.length === 0) {
+          resolve(undefined);
+        } else {
+          console.log(results, "wats results?");
+          resolve(results.results[0]);
+        }
+      } catch (e: any) {
+        console.log(e);
+        reject({
+          success: false,
+          message: e.message,
+          cause: e.cause ? e.cause.message : "Unknown error",
+        });
+      }
+    });
+  };
+
+  // get application by listing_id
+  readByOrganisationId = async (
+    organisation_id: string
+  ): Promise<Application | undefined> => {
+    console.log(organisation_id, "wats organisation id?");
+    return new Promise<Application | undefined>(async (resolve, reject) => {
+      try {
+        const results: any = await db
+          .prepare(
+            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title, 
+                FROM ${applicationTable} a
+                LEFT JOIN ${listingTable} l
+                ON a.listing_id = l.listing_id
+                WHERE l.organisation_id = ?1`
+          )
+          .bind(organisation_id)
           .all();
 
         if (results.results.length === 0) {
