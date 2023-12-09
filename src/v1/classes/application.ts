@@ -98,7 +98,7 @@ class Application {
       try {
         const results: any = await db
           .prepare(
-            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title, 
+            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title
             FROM ${applicationTable} a
             LEFT JOIN ${listingTable} l
             ON a.listing_id = l.listing_id`
@@ -131,7 +131,7 @@ class Application {
       try {
         const results: any = await db
           .prepare(
-            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title, 
+            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title
             FROM ${applicationTable} a
             LEFT JOIN ${listingTable} l
             ON a.listing_id = l.listing_id
@@ -166,7 +166,7 @@ class Application {
       try {
         const results: any = await db
           .prepare(
-            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title, 
+            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title
           FROM ${applicationTable} a
           LEFT JOIN ${listingTable} l
           ON a.listing_id = l.listing_id
@@ -201,7 +201,7 @@ class Application {
       try {
         const results: any = await db
           .prepare(
-            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title, 
+            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title
               FROM ${applicationTable} a
               LEFT JOIN ${listingTable} l
               ON a.listing_id = l.listing_id
@@ -236,7 +236,7 @@ class Application {
       try {
         const results: any = await db
           .prepare(
-            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title, 
+            `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title
                 FROM ${applicationTable} a
                 LEFT JOIN ${listingTable} l
                 ON a.listing_id = l.listing_id
