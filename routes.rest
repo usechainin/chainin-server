@@ -62,6 +62,9 @@ GET http://localhost:3000/v1/application/user/0x1dF6bE628F34a964AcFb695CD9F5417D
 ### Get application by listing_id
 GET http://localhost:3000/v1/application/listing/1
 
+### Get application by organisation_id
+GET http://localhost:3000/v1/application/organisation/29
+
 /////////////////////////////////////////
 //////////////// RENDER /////////////////
 /////////////////////////////////////////
