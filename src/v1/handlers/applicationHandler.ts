@@ -66,7 +66,7 @@ const applicationHandler = {
   },
 
   readByListingId: async (req: Request, res: Response) => {
-    const listingId = String(req.params.listing_id);
+    const listingId = Number(req.params.listing_id);
     if (listingId) {
       const application = new Application();
       try {
@@ -82,7 +82,7 @@ const applicationHandler = {
   },
 
   readByOrganisationId: async (req: Request, res: Response) => {
-    const organisationId = String(req.params.organisation_id);
+    const organisationId = Number(req.params.organisation_id);
     if (organisationId) {
       const application = new Application();
       try {

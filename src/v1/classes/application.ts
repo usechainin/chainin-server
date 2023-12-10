@@ -164,23 +164,20 @@ class Application {
     console.log(applicant_wallet_address, "wats wallet address?");
     return new Promise<Application | undefined>(async (resolve, reject) => {
       try {
+        const lowercaseAddress = applicant_wallet_address.toLowerCase(); // Convert to lowercase
+
         const results: any = await db
           .prepare(
             `SELECT a.*, l.organisation_id AS organisation_id, l.listing_title AS listing_title
-          FROM ${applicationTable} a
-          LEFT JOIN ${listingTable} l
-          ON a.listing_id = l.listing_id
-          WHERE a.applicant_wallet_address = ?1`
+            FROM ${applicationTable} a
+            LEFT JOIN ${listingTable} l
+            ON a.listing_id = l.listing_id
+            WHERE LOWER(a.applicant_wallet_address) = ?1` // Compare with lowercase
           )
-          .bind(applicant_wallet_address)
+          .bind(lowercaseAddress)
           .all();
 
-        if (results.results.length === 0) {
-          resolve(undefined);
-        } else {
-          console.log(results, "wats results?");
-          resolve(results.results[0]);
-        }
+        resolve(results);
       } catch (e: any) {
         console.log(e);
         reject({
@@ -194,7 +191,7 @@ class Application {
 
   // get application by listing_id
   readByListingId = async (
-    listing_id: string
+    listing_id: number
   ): Promise<Application | undefined> => {
     console.log(listing_id, "wats listing id?");
     return new Promise<Application | undefined>(async (resolve, reject) => {
@@ -210,12 +207,7 @@ class Application {
           .bind(listing_id)
           .all();
 
-        if (results.results.length === 0) {
-          resolve(undefined);
-        } else {
-          console.log(results, "wats results?");
-          resolve(results.results[0]);
-        }
+        resolve(results);
       } catch (e: any) {
         console.log(e);
         reject({
@@ -227,9 +219,9 @@ class Application {
     });
   };
 
-  // get application by listing_id
+  // get application by organisation_id
   readByOrganisationId = async (
-    organisation_id: string
+    organisation_id: number
   ): Promise<Application | undefined> => {
     console.log(organisation_id, "wats organisation id?");
     return new Promise<Application | undefined>(async (resolve, reject) => {
@@ -245,12 +237,7 @@ class Application {
           .bind(organisation_id)
           .all();
 
-        if (results.results.length === 0) {
-          resolve(undefined);
-        } else {
-          console.log(results, "wats results?");
-          resolve(results.results[0]);
-        }
+        resolve(results);
       } catch (e: any) {
         console.log(e);
         reject({
